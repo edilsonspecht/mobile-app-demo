@@ -1,14 +1,14 @@
 name: Mobile Release
 
 on:
-  pull_request:
-    branches:
-      - main
-  #workflow_dispatch:
-  
-  #push:
+  #pull_request:
   #  branches:
   #    - main
+  #workflow_dispatch:
+  
+  push:
+    branches:
+      - main
 
 jobs:
 
