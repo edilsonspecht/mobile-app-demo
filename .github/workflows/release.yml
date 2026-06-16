@@ -1,4 +1,4 @@
-name: Mobile Pipeline
+name: Mobile Release
 
 on:
   workflow_dispatch:
