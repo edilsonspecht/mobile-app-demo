@@ -1,0 +1,25 @@
+name: Mobile Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  call-validate-config:
+    uses: edilsonspecht/reusable-workflows/.github/workflows/validate-release.yml@main
+    with:
+      environment: DEV
+      application: mobile-app-demo
+
+  call-security:
+    needs: call-validate-config
+    uses: edilsonspecht/reusable-workflows/.github/workflows/security-scan.yml@main
+
+    with:
+      fortify-enabled: true
+      checkmarx-enabled: true
+      mend-enabled: true
+
+  call-build:
+    needs: call-security
+    uses: edilsonspecht/reusable-workflows/.github/workflows/build-mobile.yml@main
