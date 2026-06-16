@@ -1,4 +1,4 @@
-name: Sandbox
+name: Mobile Sandbox
 
 on:
   workflow_dispatch:
