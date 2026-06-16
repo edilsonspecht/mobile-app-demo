@@ -23,3 +23,11 @@ jobs:
   call-build:
     needs: call-security
     uses: edilsonspecht/reusable-workflows/.github/workflows/build-mobile.yml@main
+
+  call-release-hom:
+    needs: call-build
+    uses: edilsonspecht/reusable-workflows/.github/workflows/release-hom.yml@main
+
+  call-release-prod:
+    needs: call-release-hom
+    uses: edilsonspecht/reusable-workflows/.github/workflows/release-prod.yml@main
