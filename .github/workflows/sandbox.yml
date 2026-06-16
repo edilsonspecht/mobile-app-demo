@@ -1,0 +1,25 @@
+name: Sandbox
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  call-validate:
+    uses: edilsonspecht/reusable-workflows/.github/workflows/validate-release.yml@main
+
+  call-security:
+    needs: call-validate
+    uses: edilsonspecht/reusable-workflows/.github/workflows/security-scan.yml@main
+
+  call-build:
+    needs: call-security
+    uses: edilsonspecht/reusable-workflows/.github/workflows/build-mobile.yml@main
+
+  deploy-dev:
+    needs: call-build
+    runs-on: ubuntu-latest
+    environment: DEV
+
+    steps:
+      - run: echo "Deploy DEV realizado"
